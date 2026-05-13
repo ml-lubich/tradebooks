@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TradeBooks
+
+> Flat-rate pricebook generator for small trade contractors (HVAC,
+> plumbing, electrical). Import your parts catalog, set markup
+> percentages, and generate mobile-friendly pricebooks for the field
+> on tablets — or print as PDFs.
+
+**Tagline:** "Professional pricebooks in minutes, not months. $29/mo."
+
+```mermaid
+flowchart LR
+    USER[("👤 trade contractor")]
+    LANDING["🌐 / · landing"]
+    AUTH{{"🔐 Supabase Auth<br/>Google · email"}}
+    IMPORT["📥 parts catalog<br/>import"]
+    MARKUP["🧮 markup %<br/>tier rules"]
+    BOOK["📚 pricebook<br/>builder"]
+    DB[("🗄 Supabase<br/>Postgres")]
+    PDF[/"📄 PDF export<br/>@react-pdf/renderer"/]
+    MOBILE[/"📱 mobile-friendly<br/>field view"/]
+
+    USER --> LANDING --> AUTH
+    AUTH --> IMPORT --> DB
+    AUTH --> MARKUP --> BOOK
+    DB --> BOOK
+    BOOK --> PDF
+    BOOK --> MOBILE
+
+    classDef io fill:#0e1116,stroke:#2f81f7,stroke-width:1.5px,color:#e6edf3;
+    classDef tool fill:#161b22,stroke:#3fb950,stroke-width:1.5px,color:#e6edf3;
+    classDef brain fill:#161b22,stroke:#d29922,stroke-width:1.5px,color:#e6edf3;
+    classDef out fill:#0e1116,stroke:#a371f7,stroke-width:1.5px,color:#e6edf3;
+    class USER,DB io;
+    class IMPORT,MARKUP,LANDING tool;
+    class AUTH,BOOK brain;
+    class PDF,MOBILE out;
+```
+
+## Table of contents
+
+- [Stack](#stack)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+
+## Stack
+
+- **Framework:** Next.js 14+ (App Router, TypeScript)
+- **Database:** Supabase (Postgres + Auth)
+- **Auth:** Supabase Google OAuth + email/password
+- **Styling:** Tailwind CSS + shadcn/ui
+- **PDF Generation:** @react-pdf/renderer or jspdf
+- **Deployment:** Vercel
+- **Payments:** Stripe (free trial first)
+
+## Architecture
+
+```
+src/
+├── app/        — App Router pages
+├── components/ — UI components
+└── lib/        — Supabase, utils
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000).
