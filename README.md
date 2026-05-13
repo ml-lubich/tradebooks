@@ -43,6 +43,7 @@ flowchart LR
 - [Pricebook build (algorithm)](#pricebook-build-algorithm)
 - [Field-view sequence](#field-view-sequence)
 - [Getting Started](#getting-started)
+- [🗺️ Repository map](#️-repository-map)
 
 ## Pricebook build (algorithm)
 
@@ -108,3 +109,31 @@ bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+
+## 🗺️ Repository map
+
+Top-level layout of `tradebooks` rendered as a Mermaid mindmap (auto-generated from the on-disk tree).
+
+```mermaid
+mindmap
+  root((tradebooks))
+    public/
+      file.svg
+      globe.svg
+      next.svg
+      vercel.svg
+      window.svg
+    src/
+      app
+      components
+      lib
+      types
+    supabase/
+      migrations
+    files
+      README.md
+      next.config.ts
+      package.json
+      tsconfig.json
+```
