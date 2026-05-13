@@ -40,7 +40,46 @@ flowchart LR
 
 - [Stack](#stack)
 - [Architecture](#architecture)
+- [Pricebook build (algorithm)](#pricebook-build-algorithm)
+- [Field-view sequence](#field-view-sequence)
 - [Getting Started](#getting-started)
+
+## Pricebook build (algorithm)
+
+```mermaid
+flowchart LR
+    A([import parts catalog<br/>CSV])
+    B["normalize SKUs<br/>units · categories"]
+    C["set markup rules<br/>tier % per category"]
+    D["compute flat rates<br/>cost → retail"]
+    E["organize sections<br/>HVAC / plumbing / electrical"]
+    F["persist pricebook"]
+    G{"export?"}
+    H["@react-pdf PDF"]
+    I["mobile field URL"]
+    Z([share with techs])
+    A --> B --> C --> D --> E --> F --> G
+    G -- pdf --> H --> Z
+    G -- mobile --> I --> Z
+```
+
+## Field-view sequence
+
+```mermaid
+sequenceDiagram
+    participant T as tech (tablet)
+    participant APP as mobile pricebook
+    participant DB as Supabase
+    participant C as customer
+
+    T->>APP: open pricebook URL
+    APP->>DB: fetch latest pricebook
+    DB-->>APP: items + flat rates
+    T->>APP: select items for job
+    APP-->>T: total quote
+    T->>C: present quote on tablet
+    C-->>T: approve
+```
 
 ## Stack
 
