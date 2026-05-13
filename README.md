@@ -44,6 +44,7 @@ flowchart LR
 - [Field-view sequence](#field-view-sequence)
 - [Getting Started](#getting-started)
 - [🗺️ Repository map](#️-repository-map)
+- [📊 Code composition](#-code-composition)
 
 ## Pricebook build (algorithm)
 
@@ -136,4 +137,21 @@ mindmap
       next.config.ts
       package.json
       tsconfig.json
+```
+
+
+## 📊 Code composition
+
+File-type breakdown of source under this repo (skips `.git`, `node_modules`, build caches, lockfiles).
+
+```mermaid
+pie showData title File-type composition of tradebooks (52 files)
+    "TypeScript" : 35
+    "SVG image" : 5
+    "Markdown" : 4
+    "JSON" : 3
+    "JavaScript" : 2
+    "SQL" : 1
+    "Image" : 1
+    "CSS" : 1
 ```
